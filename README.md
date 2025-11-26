@@ -1,3 +1,6 @@
+> **Note** — The folder `linguist-samples/` contains tiny real files so GitHub can correctly display all languages used in this repo.  
+> The actual content and examples remain in this README.
+
 ![MIKES DATA WORK GIT REPO](https://raw.githubusercontent.com/mikesdatawork/images/master/git_mikes_data_work_banner_01.png "Mikes Data Work")        
 
 # Use SQL To Automatically Create SQL Instances
@@ -168,7 +171,7 @@ declare @sql_instances  table
 insert into @sql_instances 
 exec master.dbo.xp_instance_regenumvalues 
     @rootkey    = N'HKEY_LOCAL_MACHINE'
-,   @key        = N'SOFTWARE\\Microsoft\\Microsoft SQL Server\\Instance Names\\SQL';
+,   @key        = N'SOFTWARE\Microsoft\Microsoft SQL Server\Instance Names\SQL';
    
 declare db_cursor   cursor for select upper([rootkey]), upper([value]) from @sql_instances
 declare @instance_name  varchar(255)
@@ -183,7 +186,7 @@ fetch next from db_cursor into @instance_name, @instance_path
             ,   [Port]      int
             )
             declare @port   varchar(50)
-            declare @key    varchar(255) = 'software\microsoft\microsoft sql server\' + @instance_path + '\mssqlserver\supersocketnetlib\tcp\ipall'
+            declare @key    varchar(255) = 'software\microsoft\microsoft sql server\' + @instance_path + '\mssqlserver\supersocketnetlib	cp\ipall'
             exec master..xp_regread
                 @rootkey    = 'hkey_local_machine'
             ,   @key        = @key
@@ -222,4 +225,3 @@ select * from @port_table order by [instance] desc
 [![LicenseCCSA](https://img.shields.io/badge/License-CreativeCommonsSA-<COLOR>.svg)](https://creativecommons.org/share-your-work/licensing-types-examples/)
 
 ![Mikes Data Work](https://raw.githubusercontent.com/mikesdatawork/images/master/git_mikes_data_work_banner_02.png "Mikes Data Work")
-
